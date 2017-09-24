@@ -1,0 +1,62 @@
+{# app/Resources/views/security/secure.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="status">
+                <p>This is a secure page.</p>
+            </div>
+            
+            <div id="user">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				<p>Welcome Username: {{ app.user.username }}</p>
+            {% endif %}
+            </div>
+            
+            <div id="status">
+                <select id="ajax">
+                    <option value="Flower">Flower</option>
+                    <option value="Car">Car</option>
+                    <option value="City">City</option>
+                    <option value="Country">Country</option>
+                </select>
+            </div>
+            
+            <div>
+            	<p>You selected: <span id="txtHint">Rose</span></p>
+            </div>
+
+            <div id="logout">
+                <p><a href='logout'>Test Logout</a></p>
+            </div>
+
+        </div>
+    </div>
+    
+{% endblock %}
+
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+    $(document).on("change", function() {
+		$.ajax({
+			url: "http://mink_test/ajax",
+			type: "GET",
+			dataType: "text",
+			data: 'item=' + $('#ajax').val(),
+		})
+		.done( function(response) {
+			$('#txtHint').text(response);
+			//alert(response);
+		})
+		.fail(function( xhr, status, errorThrown ) {
+			alert( "Sorry, there was a problem!" );
+			console.log( "Error: " + errorThrown );
+			console.log( "Status: " + status );
+			console.dir( xhr );
+		})
+	});
+    </script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1><span>Welcome to</span> Symfony
+                {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h1>
+            </div>
+
+            <div id="status">
+                <p><a href='login'>Test Login</a></p>
+            </div>
+            
+            <div id="next">
+                <p><a href='insecure'>Visit insecure page</a></p>
+                <p><a href='secure'>Visit secure page</a></p>
+            </div>
+
+            <div id="next">
+                <p><a href='logout'>Test Logout</a></p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
