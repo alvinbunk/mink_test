@@ -87,7 +87,7 @@ class MinkTest extends TestCase
 		$dropdown = $page->findById('ajax');
 		$dropdown->selectOption('City',false);
 		
-		$this->getSession()->wait(2000,"$('#txtHint').text() == 'Taft'");
+		$this->getSession()->wait(5000,"$('#txtHint').text() == 'Taft'");
 		
 		$content = $this->getCurrentPageContent();   // Get page content.
 		$this->assertContains('Taft', $content);
